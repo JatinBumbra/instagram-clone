@@ -13,9 +13,12 @@ import {
   IoCogOutline,
   IoSyncOutline,
 } from 'react-icons/io5';
+import { useAppContext } from '../context';
 
 const Header = () => {
   const [userOptionsOpen, setUserOptionsOpen] = useState<boolean>(false);
+
+  const { logout, activeUser } = useAppContext();
 
   return (
     <header className='sticky top-0 border-b bg-white z-50'>
@@ -43,12 +46,18 @@ const Header = () => {
           <IoCompassOutline className='cursor-pointer' />
           <IoHeartOutline className='cursor-pointer' />
           <div className='relative'>
-            <IoPersonCircleSharp
-              className={`cursor-pointer rounded-full ${
+            <div
+              className={`rounded-full flex items-center justify-center h-7 w-7 ${
                 userOptionsOpen ? 'outline outline-1' : ''
               }`}
-              onClick={() => setUserOptionsOpen((prev) => !prev)}
-            />
+            >
+              <img
+                src={activeUser?.avatar}
+                alt={activeUser?.handle + 'avatar'}
+                className={`cursor-pointer rounded-full h-6 w-6 outline outline-white`}
+                onClick={() => setUserOptionsOpen((prev) => !prev)}
+              />
+            </div>
             {userOptionsOpen ? (
               <div className='absolute top-9 -left-48 shadow-md bg-white rounded-md'>
                 {[
@@ -67,10 +76,7 @@ const Header = () => {
                   </div>
                 ))}
                 <div className='flex p-3 items-center space-x-2 w-56 hover:bg-neutral-50 cursor-pointer text-xl border-t'>
-                  <p
-                    className='text-sm'
-                    onClick={() => setUserOptionsOpen(false)}
-                  >
+                  <p className='text-sm' onClick={logout}>
                     Log Out
                   </p>
                 </div>
