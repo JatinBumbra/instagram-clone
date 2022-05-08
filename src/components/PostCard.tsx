@@ -76,7 +76,7 @@ const PostCard = ({ data }: { data: IPost }) => {
           <span>{data.description}</span>
         </div>
         {data.comments.length ? (
-          <p className='text-neutral-500 font-medium text-sm my-2'>
+          <p className='text-neutral-500 font-medium text-sm my-2 cursor-pointer'>
             View all {data.comments.length} comments
           </p>
         ) : null}

@@ -32,6 +32,7 @@ export const getFakePosts = () => {
     }
 
     posts.push({
+      id: faker.database.mongodbObjectId(),
       user: getFakeUserData(),
       place: i % 2 === 0 ? faker.address.city() : '',
       description: i % 2 === 0 ? faker.lorem.lines() : faker.lorem.paragraph(),

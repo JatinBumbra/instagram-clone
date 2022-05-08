@@ -42,14 +42,12 @@ const Home = () => {
       >
         New Posts
       </div>
-      <main className='py-6 mx-auto' style={{ maxWidth: 840 }}>
+      <main className='py-6 px-4 mx-auto' style={{ maxWidth: 840 }}>
         <div className='grid grid-cols-12 gap-10'>
           <div className='col-span-7'>
             <StoriesCarousal />
             {!loading && posts.length
-              ? posts.map((post) => (
-                  <PostCard data={post} key={post.user.handle} />
-                ))
+              ? posts.map((post) => <PostCard data={post} key={post.id} />)
               : null}
           </div>
           <div className='col-span-5'>

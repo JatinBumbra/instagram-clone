@@ -7,7 +7,6 @@ import {
   IoAddCircleOutline,
   IoCompassOutline,
   IoHeartOutline,
-  IoPersonCircleSharp,
   IoPersonCircleOutline,
   IoBookmarkOutline,
   IoCogOutline,
@@ -23,7 +22,7 @@ const Header = () => {
   return (
     <header className='sticky top-0 border-b bg-white z-50'>
       <div
-        className='container mx-auto py-4 flex items-center justify-between relative'
+        className='container mx-auto p-4 flex items-center justify-between relative'
         style={{ maxWidth: 940 }}
       >
         <img

@@ -14,6 +14,7 @@ export interface IUser {
 }
 
 export interface IPost {
+  id: string;
   user: IUser;
   place?: string;
   likedBy: IUser[];
