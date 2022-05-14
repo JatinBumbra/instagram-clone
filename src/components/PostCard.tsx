@@ -5,10 +5,14 @@ import {
   IoEllipsisHorizontalSharp,
   IoChatbubbleOutline,
   IoHappyOutline,
+  IoHeart,
 } from 'react-icons/io5';
+import { useAppContext } from '../context';
 import { IPost } from '../fake-data/interfaces';
 
 const PostCard = ({ data }: { data: IPost }) => {
+  const { likePost, activeUser, unlikePost } = useAppContext();
+
   return (
     <div className='border bg-white rounded-xl mb-4'>
       <div className='flex items-center justify-between p-2.5'>
@@ -27,13 +31,23 @@ const PostCard = ({ data }: { data: IPost }) => {
         </div>
         <IoEllipsisHorizontalSharp className='text-lg mr-2 cursor-pointer' />
       </div>
-      <div className='min-h-fit w-full bg-neutral-200'>
-        <img src={data.image} alt='' />
+      <div className='w-full bg-neutral-200'>
+        <img src={data.image} alt='' className='w-full h-full' />
       </div>
       <div className='p-3'>
         <div className='flex items-center justify-between text-2xl'>
           <div className='flex items-center space-x-4'>
-            <IoHeartOutline className='cursor-pointer hover:opacity-50' />
+            {data.likedBy.includes(activeUser!) ? (
+              <IoHeart
+                className='cursor-pointer text-red-500 transition-all active:-translate-y-1 active:scale-90'
+                onClick={() => unlikePost(data.id)}
+              />
+            ) : (
+              <IoHeartOutline
+                className='cursor-pointer transition-all hover:opacity-50 active:-translate-y-1 active:scale-90'
+                onClick={() => likePost(data.id)}
+              />
+            )}
             <IoChatbubbleOutline className='cursor-pointer hover:opacity-50' />
             <IoPaperPlaneOutline className='cursor-pointer hover:opacity-50' />
           </div>
@@ -57,8 +71,12 @@ const PostCard = ({ data }: { data: IPost }) => {
           {data.likedBy.length ? (
             <div className='my-2 text-sm'>
               <span>Liked by&nbsp;</span>
-              <span className='font-medium'>{data.likedBy[0]?.handle}</span>
-              {data.likedBy.slice(1).length > 0 ? (
+              <span className='font-medium'>
+                {data.likedBy.includes(activeUser!)
+                  ? 'You'
+                  : data.likedBy[0]?.handle}
+              </span>
+              {data.likedBy.filter((user) => user !== activeUser).length > 1 ? (
                 <>
                   <span>&nbsp;and&nbsp;</span>
                   <span className='font-medium'>

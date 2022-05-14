@@ -4,33 +4,21 @@ import PostCard from '../components/PostCard';
 import StoriesCarousal from '../components/StoriesCarousal';
 import Suggestions from '../components/Suggestions';
 import { useAppContext } from '../context';
-import { IPost } from '../fake-data/interfaces';
 
 const Home = () => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [posts, setPosts] = useState<IPost[]>([]);
 
-  const { getPosts } = useAppContext();
+  const { getPosts, posts } = useAppContext();
 
   useEffect(() => {
-    fetchPosts();
+    fetchNewPosts();
   }, []);
 
-  const fetchPosts = async () => {
-    try {
-      setLoading(true);
-      const posts = await getPosts();
-      // setPosts((prev) => [...posts, ...prev]);
-      setPosts(posts);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchNewPosts = () => {
+  const fetchNewPosts = async () => {
+    setLoading(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    fetchPosts();
+    await getPosts();
+    setLoading(false);
   };
 
   return (
