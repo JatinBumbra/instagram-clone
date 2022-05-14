@@ -20,7 +20,7 @@ const Header = () => {
   const { logout, activeUser } = useAppContext();
 
   return (
-    <header className='sticky top-0 border-b bg-white z-50'>
+    <header className='sticky top-0 border-b bg-white z-20'>
       <div
         className='container mx-auto p-4 flex items-center justify-between relative'
         style={{ maxWidth: 940 }}
@@ -67,14 +67,14 @@ const Header = () => {
                 ].map((option) => (
                   <div
                     key={option.label}
-                    className='flex px-3 py-2.5 items-center space-x-2 w-56 hover:bg-neutral-50 cursor-pointer text-xl'
+                    className='flex px-3 py-2.5 items-center space-x-2 w-56 cursor-pointer text-xl hover:bg-neutral-50 active:bg-neutral-200'
                     onClick={() => setUserOptionsOpen(false)}
                   >
                     {option.icon}
                     <p className='text-sm'>{option.label}</p>
                   </div>
                 ))}
-                <div className='flex p-3 items-center space-x-2 w-56 hover:bg-neutral-50 cursor-pointer text-xl border-t'>
+                <div className='flex p-3 items-center space-x-2 w- cursor-pointer text-xl border-t hover:bg-neutral-50 active:bg-neutral-200'>
                   <p className='text-sm' onClick={logout}>
                     Log Out
                   </p>

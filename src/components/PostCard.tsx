@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   IoHeartOutline,
   IoPaperPlaneOutline,
@@ -9,12 +10,20 @@ import {
 } from 'react-icons/io5';
 import { useAppContext } from '../context';
 import { IPost } from '../fake-data/interfaces';
+import PostCardContextMenu from './PostCardContextMenu';
 
 const PostCard = ({ data }: { data: IPost }) => {
   const { likePost, activeUser, unlikePost } = useAppContext();
 
+  const [contextMenuOpen, setContextMenuOpen] = useState<boolean>(false);
+
   return (
     <div className='border bg-white rounded-xl mb-4'>
+      <PostCardContextMenu
+        open={contextMenuOpen}
+        setOpen={setContextMenuOpen}
+      />
+
       <div className='flex items-center justify-between p-2.5'>
         <div className='flex items-center'>
           <div className='h-10 w-10 bg-neutral-200 rounded-full'>
@@ -29,7 +38,10 @@ const PostCard = ({ data }: { data: IPost }) => {
             <p style={{ fontSize: 12 }}>{data.place}</p>
           </div>
         </div>
-        <IoEllipsisHorizontalSharp className='text-lg mr-2 cursor-pointer' />
+        <IoEllipsisHorizontalSharp
+          className='text-lg mr-2 cursor-pointer'
+          onClick={() => setContextMenuOpen(true)}
+        />
       </div>
       <div className='w-full bg-neutral-200'>
         <img src={data.image} alt='' className='w-full h-full' />
@@ -39,12 +51,12 @@ const PostCard = ({ data }: { data: IPost }) => {
           <div className='flex items-center space-x-4'>
             {data.likedBy.includes(activeUser!) ? (
               <IoHeart
-                className='cursor-pointer text-red-500 transition-all active:-translate-y-1 active:scale-90'
+                className='cursor-pointer text-red-500 transition-all active:scale-75'
                 onClick={() => unlikePost(data.id)}
               />
             ) : (
               <IoHeartOutline
-                className='cursor-pointer transition-all hover:opacity-50 active:-translate-y-1 active:scale-90'
+                className='cursor-pointer transition-all hover:opacity-50 active:scale-75'
                 onClick={() => likePost(data.id)}
               />
             )}
