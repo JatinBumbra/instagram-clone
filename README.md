@@ -15,9 +15,12 @@ Live Preview Link -
 
 
 ## Run Locally
-Copy and paste the following commands -
+Open a terminal and copy-paste the following commands -
 ```
 git clone https://github.com/JatinBumbra/instagram-clone.git
+```
+```
+cd instagram-clone
 ```
 ```
 npm install
