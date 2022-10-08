@@ -5,7 +5,7 @@
 <img width="729" alt="image" src="https://user-images.githubusercontent.com/56374584/194708543-1886d76a-f845-45f3-906d-391cc353781e.png">
 
 
-### Live Preview
+## Live Preview
 Login with -
 - Username - ***jatinbumbra***
 - Password - ***password***
@@ -14,10 +14,10 @@ Live Preview Link -
 
 
 
-### To run locally
+## Run Locally
 Copy and paste the following commands -
 ```
-git clone https://github.com/JatinBumbra/instagram-clone
+git clone https://github.com/JatinBumbra/instagram-clone.git
 ```
 ```
 npm install
