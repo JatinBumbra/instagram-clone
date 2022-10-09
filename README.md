@@ -10,7 +10,7 @@ Login with -
 - Username - ***jatinbumbra***
 - Password - ***password***
 
-Live Preview Link - 
+Live Preview Link - https://instagram-clone-jb.netlify.app/
 
 
 
